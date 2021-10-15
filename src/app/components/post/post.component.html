@@ -3,10 +3,12 @@
     <h1 class="title">Detail Post: {{ post.id }}</h1>
 
     <div class="post">
-      <h2 class="post-title">{{ post.title }}</h2>
+      <h2 class="post-title">{{ post.title | titlecase }}</h2>
       <p class="post-text">
-        {{ post.body }}
+        {{ post.body | titlecase }}
       </p>
     </div>
+
+    <app-comments [id]="id"></app-comments>
   </div>
 </ng-container>

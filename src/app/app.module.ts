@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
 import { ErrorComponent } from './components/error/error.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
     PostComponent,
-    ErrorComponent
+    ErrorComponent,
+    CommentsComponent
   ],
   imports: [
     HttpClientModule,
