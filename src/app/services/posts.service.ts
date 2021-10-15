@@ -29,4 +29,16 @@ export class PostsService {
     }) )
 
   }
+
+  getPostComments(id:number){
+
+    const url = `https://jsonplaceholder.typicode.com/posts/${id}/comments`
+
+
+    return this.http.get(url).pipe(map((res:any)=>{
+      return res
+    }))
+
+  }
+
 }
