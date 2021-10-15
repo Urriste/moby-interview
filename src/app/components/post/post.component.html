@@ -1,13 +1,11 @@
-<ng-container *ngIf="id"
-  ><div class="post-container">
-    <h1 class="title">Detail Post: {{ id }}</h1>
+<ng-container *ngIf="post">
+  <div class="post-container">
+    <h1 class="title">Detail Post: {{ post.id }}</h1>
 
     <div class="post">
-      <h2 class="post-title">Heading</h2>
+      <h2 class="post-title">{{ post.title }}</h2>
       <p class="post-text">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto officiis
-        numquam nemo ut exercitationem, molestiae explicabo expedita provident
-        labore, iure voluptas dolores natus libero qui repudiandae!
+        {{ post.body }}
       </p>
     </div>
   </div>
