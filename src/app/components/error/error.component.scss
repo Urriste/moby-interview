@@ -1,0 +1,19 @@
+.error-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .error-title {
+    margin: 100px;
+  }
+
+  .error-img {
+    width: 500px;
+    margin-bottom: 100px;
+  }
+
+  .error-link {
+    text-decoration: none;
+  }
+}
