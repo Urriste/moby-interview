@@ -9,20 +9,18 @@ import { PostsService } from 'src/app/services/posts.service';
 export class CommentsComponent implements OnInit {
 
 
-  @Input() id?:number;
+  @Input() id:any;
+  comments:any[] = [];
 
   constructor(private postService:PostsService) { }
 
   ngOnInit(): void {
- 
-    if(this.id){
-     
     
-      this.postService.getPostComments(this.id).subscribe((res)=>{
-        console.log("comments res",res)
-      })
-
-    }
+    
+    this.postService.getComments(this.id).subscribe((res)=>{
+      console.log("res", res)
+      this.comments = res;
+    })
 
 
   }

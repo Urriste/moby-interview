@@ -30,12 +30,13 @@ export class PostsService {
 
   }
 
-  getPostComments(id:number){
+  getComments(id:number){
 
     const url = `https://jsonplaceholder.typicode.com/posts/${id}/comments`
-
+    console.log("al servicio llegó")
 
     return this.http.get(url).pipe(map((res:any)=>{
+      console.log("res desde el servicio",res)
       return res
     }))
 
