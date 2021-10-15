@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postsService.getPosts().subscribe((res:any)=>{
-      console.log(res.slice(0,10))
+     
       this.posts = res.slice(0,10)
     });
   }

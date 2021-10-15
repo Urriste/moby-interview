@@ -9,6 +9,8 @@ export class PostsService {
 
   constructor(private http:HttpClient) { }
 
+  //POSTS SERVICES
+
   getPosts(){
 
     const url = `https://jsonplaceholder.typicode.com/posts`;
@@ -16,8 +18,15 @@ export class PostsService {
     return this.http.get(url).pipe(map( (res : any)=>{
       return res
     } ))
+  }
 
+  getPost(id:number){
 
+    const url = `https://jsonplaceholder.typicode.com/posts/${id}`
+
+    return this.http.get(url).pipe(map((res:any)=>{
+      return res
+    }) )
 
   }
 }
