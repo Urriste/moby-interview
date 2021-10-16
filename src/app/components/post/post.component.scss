@@ -2,29 +2,27 @@
   width: 100%;
   padding: 25px 80px;
 
-
-  .title-container{
+  .title-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
 
     .title {
-    margin: 0 0 50px 0;
+      margin: 0 0 50px 0;
     }
 
     .last-comment,
-    .title{
+    .title {
       font-weight: 500;
     }
-  
   }
 
   .post {
     margin: 0 0 50px 0;
   }
 
-  .add-comments__container{
-    width: 60%;
+  .add-comments__container {
+    width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,24 +30,20 @@
     margin: 30px 0 0 0;
     padding: 50px;
 
-    .add-comments__form{
+    .add-comments__form {
       width: 60%;
       display: flex;
       flex-direction: column;
 
       .name-input,
       .email-input,
-      .comment-input{
+      .comment-input {
         margin-bottom: 10px;
         resize: none;
       }
     }
   }
-
 }
-
-
-
 
 .loading {
   width: 100%;

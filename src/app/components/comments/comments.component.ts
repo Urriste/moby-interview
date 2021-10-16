@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/services/posts.service';
 
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -16,7 +17,11 @@ export class CommentsComponent implements OnInit {
   constructor(private postService:PostsService) { }
 
   ngOnInit(): void {
-    
+
+    this.postService.addComment.subscribe((res)=>{
+      console.log("Res desde el servicio addComment",res)
+      this.comments.push(res);
+    })
     
     this.postService.getComments(this.id).subscribe((res)=>{
       

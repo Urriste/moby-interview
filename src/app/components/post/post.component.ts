@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Post } from 'src/app/models/post.model';
@@ -16,12 +18,18 @@ export class PostComponent implements OnInit {
     post = new Post;
    id?:number;
    fullDate:string = "";
+   newComment:any;
+
+
+   dataForm!:FormGroup;
   
-  constructor(private activeRouter: ActivatedRoute, private postsService:PostsService) { }
+  constructor(private activeRouter: ActivatedRoute, private postsService:PostsService,private fb:FormBuilder) { }
 
 
 
   ngOnInit(): void {
+
+    this.initForm()
 
       this.postsService.emitter.subscribe((res)=>{
         console.log("Recibiendo la data desde los comentarios",res)
@@ -40,9 +48,33 @@ export class PostComponent implements OnInit {
     
   }
 
-  
-  procesar(mensaje:any){
-    console.log(mensaje)
+  submit(){
+    if(this.dataForm.valid){
+      console.log(this.dataForm.value)
+
+      this.newComment = {
+        name:this.dataForm.value.name,
+        email: this.dataForm.value.email,
+        body: this.dataForm.value.comment,
+        isAdded: true
+
+      }
+      
+
+      this.postsService.addComment.emit(this.newComment)
+    }
   }
+
+
+  initForm(){
+      this.dataForm = this.fb.group({
+        name: ["", Validators.required],
+        email: ["", Validators.required],
+        comment: ["", Validators.required]
+      })
+
+  }
+
+  
 
 }
