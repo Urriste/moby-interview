@@ -1,6 +1,7 @@
 .comments-container {
   width: 1000px;
   border: 2px solid black;
+  
 
   .comments-header {
     width: 100%;
@@ -16,6 +17,19 @@
 
     .comment-name {
       margin: 0 0 -1px 0;
+    }
+  }
+
+  .btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn-emit{
+      padding: 5px 40px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
   }
 }

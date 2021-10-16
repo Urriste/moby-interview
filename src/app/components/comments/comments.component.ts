@@ -19,7 +19,7 @@ export class CommentsComponent implements OnInit {
     
     
     this.postService.getComments(this.id).subscribe((res)=>{
-      console.log("res", res)
+      
       this.comments = res;
     })
 

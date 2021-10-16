@@ -1,6 +1,7 @@
 .post-container {
   width: 100%;
-  padding: 25px;
+  padding: 25px 80px;
+
 
   .title-container{
     width: 100%;
@@ -9,8 +10,13 @@
 
     .title {
     margin: 0 0 50px 0;
-  }
+    }
 
+    .last-comment,
+    .title{
+      font-weight: 500;
+    }
+  
   }
 
   
