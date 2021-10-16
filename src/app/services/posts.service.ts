@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import {map} from "rxjs/operators"
 
 @Injectable({
@@ -8,6 +8,10 @@ import {map} from "rxjs/operators"
 export class PostsService {
 
   constructor(private http:HttpClient) { }
+
+
+  @Output() emitter = new EventEmitter<string>();
+
 
   //POSTS SERVICES
 

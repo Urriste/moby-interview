@@ -2,10 +2,18 @@
   width: 100%;
   padding: 25px;
 
-  .title {
+  .title-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .title {
     margin: 0 0 50px 0;
   }
 
+  }
+
+  
   .post {
     margin: 0 0 50px 0;
   }

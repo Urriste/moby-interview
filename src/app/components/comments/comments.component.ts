@@ -8,6 +8,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class CommentsComponent implements OnInit {
 
+  
 
   @Input() id:any;
   comments:any[] = [];
@@ -24,5 +25,19 @@ export class CommentsComponent implements OnInit {
 
 
   }
+
+  emit(){
+
+    let date = new Date();
+    let fullDate = `${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    
+
+
+    this.postService.emitter.emit(fullDate);
+
+
+    
+  }
+
 
 }

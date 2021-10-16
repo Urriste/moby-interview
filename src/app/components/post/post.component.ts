@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Post } from 'src/app/models/post.model';
 import { PostsService } from 'src/app/services/posts.service';
 
@@ -14,6 +15,7 @@ export class PostComponent implements OnInit {
 
     post = new Post;
    id?:number;
+   fullDate:string = "";
   
   constructor(private activeRouter: ActivatedRoute, private postsService:PostsService) { }
 
@@ -21,6 +23,10 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
 
+      this.postsService.emitter.subscribe((res)=>{
+        console.log("Recibiendo la data desde los comentarios",res)
+        this.fullDate = res;
+      })
 
     this.activeRouter.snapshot.params.id ? this.id = this.activeRouter.snapshot.params.id : null;
 
@@ -32,6 +38,11 @@ export class PostComponent implements OnInit {
     }
 
     
+  }
+
+  
+  procesar(mensaje:any){
+    console.log(mensaje)
   }
 
 }
