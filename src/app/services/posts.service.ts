@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import {map} from "rxjs/operators"
 
 @Injectable({
@@ -8,6 +8,10 @@ import {map} from "rxjs/operators"
 export class PostsService {
 
   constructor(private http:HttpClient) { }
+
+
+  @Output() emitter = new EventEmitter<string>();
+
 
   //POSTS SERVICES
 
@@ -33,10 +37,10 @@ export class PostsService {
   getComments(id:number){
 
     const url = `https://jsonplaceholder.typicode.com/posts/${id}/comments`
-    console.log("al servicio llegó")
+   
 
     return this.http.get(url).pipe(map((res:any)=>{
-      console.log("res desde el servicio",res)
+
       return res
     }))
 
