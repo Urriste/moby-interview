@@ -1,6 +1,11 @@
-<ng-container *ngIf="post">
-  <div class="post-container">
-    <h1 class="title">Detail Post: {{ post.id }}</h1>
+<ng-container *ngIf="post" >
+  <div class="post-container" >
+
+    <div class="title-container">
+      <p class="title">Detail Post: {{ post.id }}</p>
+      <p class="last-comment" *ngIf="fullDate !== '' ">Last Comment: {{fullDate}}</p>
+    </div>
+    
 
     <div class="post">
       <h2 class="post-title">{{ post.title | titlecase }}</h2>
@@ -8,7 +13,9 @@
         {{ post.body | titlecase }}
       </p>
     </div>
-
-    <app-comments [id]="id"></app-comments>
+    <div class="comments-container">
+       <app-comments  [id]="id"></app-comments>
+    </div>
+   
   </div>
 </ng-container>
