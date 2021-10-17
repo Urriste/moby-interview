@@ -1,7 +1,6 @@
 .comments-container {
-  width: 1000px;
+  width: 1300px;
   border: 2px solid black;
-  
 
   .comments-header {
     width: 100%;
@@ -14,19 +13,30 @@
   .comments {
     width: 100%;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .comment-name {
-      margin: 0 0 -1px 0;
+    .comment-content {
+      word-break: break-all !important;
+      margin: 0 10px 0 0;
+      .comment-name {
+        margin: 0 0 -1px 0;
+      }
+    }
+
+    .trash-can {
+      cursor: pointer;
     }
   }
 
-  .btn-container{
+  .btn-container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .btn-emit{
+    .btn-emit {
       padding: 5px 40px;
       border-radius: 10px;
       margin-bottom: 20px;

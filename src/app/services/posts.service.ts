@@ -13,7 +13,7 @@ export class PostsService {
   constructor(private http:HttpClient) { }
 
 
-  @Output() emitter = new EventEmitter<string>();
+  @Output() emitDate = new EventEmitter<string>();
 
   @Output() addComment = new EventEmitter<any>();
 

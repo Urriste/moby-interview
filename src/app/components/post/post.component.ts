@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
 
     this.initForm()
 
-      this.postsService.emitter.subscribe((res)=>{
+      this.postsService.emitDate.subscribe((res)=>{
         console.log("Recibiendo la data desde los comentarios",res)
         this.fullDate = res;
       })
@@ -50,18 +50,8 @@ export class PostComponent implements OnInit {
 
   submit(){
     if(this.dataForm.valid){
-      console.log(this.dataForm.value)
-
-      this.newComment = {
-        name:this.dataForm.value.name,
-        email: this.dataForm.value.email,
-        body: this.dataForm.value.comment,
-        isAdded: true
-
-      }
-      
-
-      this.postsService.addComment.emit(this.newComment)
+          
+    this.postsService.addComment.emit(this.dataForm.value)
     }
   }
 

@@ -1,11 +1,22 @@
-<div class="comments-container" >
+<div class="comments-container">
   <div class="comments-header"><h1>Comments</h1></div>
   <div class="comments" *ngFor="let comment of comments">
-    <p class="comment-name"><b>Name</b>: {{ comment.name | titlecase }}</p>
-    <p><b>Comment</b>: {{ comment.body | titlecase }}</p>
+    <div class="comment-content">
+      <p class="comment-name"><b>Name</b>: {{ comment.name | titlecase }}</p>
+      <p class="comment-body"><b>Comment</b>: {{ comment.body | titlecase }}</p>
+    </div>
+
+    <div *ngIf="comment.isAdded" class="trash-btn__container">
+      <img
+        src="../../../assets/img/trash-can.png"
+        class="trash-can"
+        alt="trash can"
+        (click)="deleteComment(comment)"
+      />
+    </div>
   </div>
 
   <div class="btn-container">
-    <button class="btn-emit" (click)="emit()" >Emit</button>
+    <button class="btn-emit" (click)="emit()">Emit</button>
   </div>
 </div>
