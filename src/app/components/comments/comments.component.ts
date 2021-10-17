@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { PostsService } from 'src/app/services/posts.service';
 
 
@@ -32,13 +32,29 @@ export class CommentsComponent implements OnInit {
 
       
       this.comments.push(this.newComment);
-    })
-    
-    this.postService.getComments(this.id).subscribe((res)=>{
+      console.log(this.id);
       
-      this.comments = res;
+      localStorage.setItem(`comments/${this.comments[0].postId}`, JSON.stringify(this.comments))
     })
 
+
+    this.postService.getComments(this.id).subscribe((res)=>{      
+   
+
+    if(localStorage.getItem(`comments/${res[0].postId}`)){
+      
+      this.comments = JSON.parse(localStorage.getItem(`comments/${res[0].postId}`) || "{}")
+
+    }else{
+       
+      this.comments = res;
+      localStorage.setItem(`comments/${this.comments[0].postId}`, JSON.stringify(this.comments)) 
+    }
+     
+    
+    
+    })
+    
 
   }
 
@@ -49,6 +65,10 @@ export class CommentsComponent implements OnInit {
       return item.id !== comment.id
 
     })
+
+    console.log(this.id)
+    localStorage.setItem(`comments/${this.comments[0].postId}`, JSON.stringify(this.comments))
+
 
   }
 
