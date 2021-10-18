@@ -73,21 +73,28 @@ export class CommentsComponent implements OnInit{
       isAdded:true
     }
 
-    this.comments.push(this.newComment)
-    localStorage.setItem(`comments/${this.newComment.postId}`, JSON.stringify(this.comments))
+    if(this.newComment.body.length > 500){
+      alert("Ingresaste más de 500 caracteres")
+    }else{
+
+      this.comments.push(this.newComment)
+      localStorage.setItem(`comments/${this.newComment.postId}`, JSON.stringify(this.comments))
+      }
     }
+
   }
 
 
   initForm(){
       this.dataForm = this.fb.group({
         name: ["", Validators.required],
-        email: ["", Validators.required],
-        comment: ["", Validators.required]
+        email: ["", Validators.compose([Validators.required,Validators.email])],
+        comment: ["",Validators.required]
       })
 
   }
 
+  
 
 
   getComments(){
@@ -104,12 +111,12 @@ export class CommentsComponent implements OnInit{
       }else{
         this.comments = res;
       }
-
-        
-
-        
         
     })
   }
 
+
 }
+
+
+
