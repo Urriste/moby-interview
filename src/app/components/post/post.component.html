@@ -16,34 +16,5 @@
     <div class="comments-container">
       <app-comments [id]="id"></app-comments>
     </div>
-
-    <div class="add-comments__container">
-      <h4>Add your comment</h4>
-      <form [formGroup]="dataForm" class="add-comments__form">
-        <input
-          class="name-input"
-          type="text"
-          placeholder="Name"
-          required
-          formControlName="name"
-        />
-        <input
-          class="email-input"
-          type="email"
-          placeholder="Email"
-          required
-          formControlName="email"
-        />
-        <textarea
-          class="comment-input"
-          cols="30"
-          rows="10"
-          placeholder="Add your comment"
-          required
-          formControlName="comment"
-        ></textarea>
-        <button (click)="submit()">Add</button>
-      </form>
-    </div>
   </div>
 </ng-container>

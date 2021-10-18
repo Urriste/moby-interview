@@ -1,5 +1,6 @@
 <div class="comments-container">
   <div class="comments-header"><h1>Comments</h1></div>
+
   <div class="comments" *ngFor="let comment of comments">
     <div class="comment-content">
       <p class="comment-name"><b>Name</b>: {{ comment.name | titlecase }}</p>
@@ -19,4 +20,32 @@
   <div class="btn-container">
     <button class="btn-emit" (click)="emit()">Emit</button>
   </div>
+</div>
+<div class="add-comments__container">
+  <h4>Add your comment</h4>
+  <form [formGroup]="dataForm" class="add-comments__form">
+    <input
+      class="name-input"
+      type="text"
+      placeholder="Name"
+      required
+      formControlName="name"
+    />
+    <input
+      class="email-input"
+      type="email"
+      placeholder="Email"
+      required
+      formControlName="email"
+    />
+    <textarea
+      class="comment-input"
+      cols="30"
+      rows="10"
+      placeholder="Add your comment"
+      required
+      formControlName="comment"
+    ></textarea>
+    <button (click)="submit()">Add</button>
+  </form>
 </div>

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 
 
@@ -7,56 +9,31 @@ import { PostsService } from 'src/app/services/posts.service';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit{
 
   
 
   @Input() id:any;
   comments:any[] = [];
   newComment:any;
+  dataForm!:FormGroup;
 
-  constructor(private postService:PostsService) { }
+  constructor(private postService:PostsService,private activeRouter: ActivatedRoute,private fb:FormBuilder) { }
 
   ngOnInit(): void {
-
-    this.postService.addComment.subscribe((res)=>{
-      
-  
-      this.newComment = {
-        name:res.name,
-        email: res.email,
-        body: res.comment,
-        isAdded: true,
-        id: this.comments.length + 1
-      }
-
-      
-      this.comments.push(this.newComment);
-      console.log(this.id);
-      
-      localStorage.setItem(`comments/${this.comments[0].postId}`, JSON.stringify(this.comments))
-    })
+    
 
 
-    this.postService.getComments(this.id).subscribe((res)=>{      
+
+
+    this.getComments()
    
-
-    if(localStorage.getItem(`comments/${res[0].postId}`)){
-      
-      this.comments = JSON.parse(localStorage.getItem(`comments/${res[0].postId}`) || "{}")
-
-    }else{
-       
-      this.comments = res;
-      localStorage.setItem(`comments/${this.comments[0].postId}`, JSON.stringify(this.comments)) 
-    }
-     
-    
-    
-    })
+    this.initForm()
     
 
   }
+
+
 
   deleteComment(comment:any){
     
@@ -65,10 +42,9 @@ export class CommentsComponent implements OnInit {
       return item.id !== comment.id
 
     })
-
-    console.log(this.id)
     localStorage.setItem(`comments/${this.comments[0].postId}`, JSON.stringify(this.comments))
-
+   
+    
 
   }
 
@@ -78,10 +54,62 @@ export class CommentsComponent implements OnInit {
     let fullDate = `${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     
     this.postService.emitDate.emit(fullDate);
-
-
     
   }
 
+ 
+
+  
+  submit(){
+    if(this.dataForm.valid){
+          
+    
+    this.newComment ={
+      name:this.dataForm.value.name,
+      email:this.dataForm.value.email,
+      body:this.dataForm.value.comment,
+      id: this.comments[this.comments.length -1].id + 1,
+      postId:this.activeRouter.snapshot.params.id,
+      isAdded:true
+    }
+
+    this.comments.push(this.newComment)
+    localStorage.setItem(`comments/${this.newComment.postId}`, JSON.stringify(this.comments))
+    }
+  }
+
+
+  initForm(){
+      this.dataForm = this.fb.group({
+        name: ["", Validators.required],
+        email: ["", Validators.required],
+        comment: ["", Validators.required]
+      })
+
+  }
+
+
+
+  getComments(){
+    this.postService.getComments(this.id).subscribe((res)=>{      
+     
+      if(localStorage.getItem(`comments/${res[0].postId}`)){
+
+        let localStorageComments = JSON.parse(localStorage.getItem(`comments/${res[0].postId}`) || "")
+
+        if(localStorageComments !== ""){
+          this.comments = localStorageComments;
+        }
+
+      }else{
+        this.comments = res;
+      }
+
+        
+
+        
+        
+    })
+  }
 
 }
