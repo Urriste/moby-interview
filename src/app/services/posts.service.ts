@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import {map} from "rxjs/operators"
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,9 @@ export class PostsService {
   constructor(private http:HttpClient) { }
 
 
-  @Output() emitter = new EventEmitter<string>();
+  @Output() emitDate = new EventEmitter<string>();
+
+  @Output() addComment = new EventEmitter<any>();
 
 
   //POSTS SERVICES

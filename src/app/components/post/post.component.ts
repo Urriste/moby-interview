@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Post } from 'src/app/models/post.model';
@@ -16,6 +18,10 @@ export class PostComponent implements OnInit {
     post = new Post;
    id?:number;
    fullDate:string = "";
+   newComment:any;
+
+
+   
   
   constructor(private activeRouter: ActivatedRoute, private postsService:PostsService) { }
 
@@ -23,7 +29,9 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
 
-      this.postsService.emitter.subscribe((res)=>{
+ 
+
+      this.postsService.emitDate.subscribe((res)=>{
         console.log("Recibiendo la data desde los comentarios",res)
         this.fullDate = res;
       })
@@ -41,8 +49,5 @@ export class PostComponent implements OnInit {
   }
 
   
-  procesar(mensaje:any){
-    console.log(mensaje)
-  }
 
 }
