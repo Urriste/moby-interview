@@ -2,31 +2,22 @@
   width: 100%;
   padding: 25px 80px;
 
-
-  .title-container{
+  .title-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
 
     .title {
-    margin: 0 0 50px 0;
+      margin: 0 0 50px 0;
     }
 
     .last-comment,
-    .title{
+    .title {
       font-weight: 500;
     }
-  
   }
 
-  
   .post {
     margin: 0 0 50px 0;
   }
-}
-
-.loading {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
