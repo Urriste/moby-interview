@@ -1,1 +1,1 @@
-Technial exercise for MobyDigital
+Technical exercise for MobyDigital
